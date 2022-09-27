@@ -42,14 +42,14 @@ func TestVerificaStatusCodeDaSaudacaoComParametro(t *testing.T) {
 	resposta := httptest.NewRecorder()
 	r.ServeHTTP(resposta, req)
 	assert.Equal(t, http.StatusOK, resposta.Code, "Deveriam ser iguais")
-	mockDaResposta := `{"API diz":"oi gui, Tudo beleza?"}`
+	mockDaResposta := `{"API diz":"E ai gui, Tudo beleza?"}`
 	respostaBody, _ := ioutil.ReadAll(resposta.Body)
 	assert.Equal(t, mockDaResposta, string(respostaBody))
 }
 
 func TestListaTodosOsAlunosHanlder(t *testing.T) {
 	database.ConectaComBancoDeDados()
-	CriaAlunoMock()
+	CriaAlunoMock()go-version: ${{ matrix.go_version }}
 	defer DeletaAlunoMock()
 	r := SetupDasRotasDeTeste()
 	r.GET("/alunos", controllers.TodosAlunos)
